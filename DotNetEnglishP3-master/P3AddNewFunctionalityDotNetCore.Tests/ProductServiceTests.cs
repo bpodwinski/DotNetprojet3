@@ -23,8 +23,9 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             public void TestMissingName()
             {
                 product.Name = null;
-                product.Price = "9";
+                product.Price = "9.9";
                 product.Stock = "1";
+
                 Assert.False(ValidateModel(product));
                 Assert.Equal("MissingName", GetFirstErrorMessage(product));
             }
@@ -35,6 +36,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
                 product.Name = "Test Product";
                 product.Price = "abc";
                 product.Stock = "3";
+
                 Assert.False(ValidateModel(product));
                 Assert.Equal("PriceNotANumber", GetFirstErrorMessage(product));
             }
@@ -45,6 +47,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
                 product.Name = "Test Product";
                 product.Price = "0";
                 product.Stock = "1";
+
                 Assert.False(ValidateModel(product));
                 Assert.Equal("PriceNotGreaterThanZero", GetFirstErrorMessage(product));
             }
@@ -55,6 +58,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
                 product.Name = "Test Product";
                 product.Price = "7";
                 product.Stock = "0";
+
                 Assert.False(ValidateModel(product));
                 Assert.Equal("QuantityNotGreaterThanZero", GetFirstErrorMessage(product));
             }
@@ -65,8 +69,31 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
                 product.Name = "Test Product";
                 product.Stock = "1";
                 product.Price = null;
+
                 Assert.False(ValidateModel(product));
                 Assert.Equal("MissingPrice", GetFirstErrorMessage(product));
+            }
+
+            [Fact]
+            public void TestMissingQuantity()
+            {
+                product.Name = "Test Product";
+                product.Stock = null;
+                product.Price = "42";
+
+                Assert.False(ValidateModel(product));
+                Assert.Equal("MissingQuantity", GetFirstErrorMessage(product));
+            }
+
+            [Fact]
+            public void TestQuantityNotAnInteger()
+            {
+                product.Name = "Test Product";
+                product.Stock = "1.5";
+                product.Price = "19";
+
+                Assert.False(ValidateModel(product));
+                Assert.Equal("QuantityNotAnInteger", GetFirstErrorMessage(product));
             }
 
             private bool ValidateModel(object model)
