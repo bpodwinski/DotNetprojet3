@@ -22,77 +22,112 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             [Fact]
             public void TestMissingName()
             {
+                // Arrange
                 product.Name = null;
                 product.Price = "9.9";
                 product.Stock = "1";
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("MissingName", GetFirstErrorMessage(product));
             }
 
             [Fact]
             public void TestPriceNotANumber()
             {
+                // Arrange
                 product.Name = "Test Product";
                 product.Price = "abc";
                 product.Stock = "3";
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("PriceNotANumber", GetFirstErrorMessage(product));
             }
 
             [Fact]
             public void TestPriceNotGreaterThanZero()
             {
+                // Arrange
                 product.Name = "Test Product";
                 product.Price = "0";
                 product.Stock = "1";
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("PriceNotGreaterThanZero", GetFirstErrorMessage(product));
             }
 
             [Fact]
             public void TestQuantityNotGreaterThanZero()
             {
+                // Arrange
                 product.Name = "Test Product";
                 product.Price = "7";
                 product.Stock = "0";
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("QuantityNotGreaterThanZero", GetFirstErrorMessage(product));
             }
 
             [Fact]
             public void TestMissingPrice()
             {
+                // Arrange
                 product.Name = "Test Product";
                 product.Stock = "1";
                 product.Price = null;
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("MissingPrice", GetFirstErrorMessage(product));
             }
 
             [Fact]
             public void TestMissingQuantity()
             {
+                // Arrange
                 product.Name = "Test Product";
                 product.Stock = null;
                 product.Price = "42";
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("MissingQuantity", GetFirstErrorMessage(product));
             }
 
             [Fact]
             public void TestQuantityNotAnInteger()
             {
+                // Arrange
                 product.Name = "Test Product";
                 product.Stock = "1.5";
                 product.Price = "19";
 
-                Assert.False(ValidateModel(product));
+                // Act
+                var isValid = ValidateModel(product);
+
+                // Assert
+                Assert.False(isValid);
                 Assert.Equal("QuantityNotAnInteger", GetFirstErrorMessage(product));
             }
 
