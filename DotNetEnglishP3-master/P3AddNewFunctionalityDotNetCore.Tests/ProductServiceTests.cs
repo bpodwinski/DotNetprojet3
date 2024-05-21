@@ -32,7 +32,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
                 // Assert
                 Assert.False(isValid);
-                Assert.Equal("MissingName", GetFirstErrorMessage(product));
+                Assert.Equal("ErrorMissingName", GetFirstErrorMessage(product));
             }
 
             [Fact]
@@ -96,7 +96,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
                 // Assert
                 Assert.False(isValid);
-                Assert.Equal("MissingPrice", GetFirstErrorMessage(product));
+                Assert.Equal("ErrorMissingPrice", GetFirstErrorMessage(product));
             }
 
             [Fact]
@@ -112,7 +112,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
                 // Assert
                 Assert.False(isValid);
-                Assert.Equal("MissingQuantity", GetFirstErrorMessage(product));
+                Assert.Equal("ErrorMissingQuantity", GetFirstErrorMessage(product));
             }
 
             [Fact]
